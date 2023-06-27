@@ -117,7 +117,7 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 3,
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
@@ -132,6 +132,7 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
                       border: Border.all(
                         color: Colors.black,
                       ),
