@@ -14,6 +14,7 @@ class XOXOGame extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: XOXOGameScreen(),
+      debugShowCheckedModeBanner:false,
     );
   }
 }
