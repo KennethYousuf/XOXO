@@ -94,6 +94,57 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
     });
   }
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("XOXO Game"),
+      ),
+
+      body: Column(
+    children: [
+      Expanded(
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemCount: 9,
+          itemBuilder: (context, index) {
+            final row = index ~/ 3;
+            final col = index % 3;
+            return GestureDetector(
+              onTap: () {
+                makeMove(row, col);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    board[row][col],
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          gameEnded ? 'Winner: $winner' : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+      ElevatedButton(
+        onPressed: resetGame,
+        child: Text('Reset'),
+      ),
+    ],
+  ),
+    );
   }
 }
