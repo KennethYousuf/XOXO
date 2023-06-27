@@ -103,6 +103,17 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
       body: Column(
     children: [
       Expanded(
+        flex: 1,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            gameEnded ? 'Winner: $winner' : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
+      Expanded(
+        flex: 5,
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
@@ -132,13 +143,7 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
           },
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          gameEnded ? 'Winner: $winner' : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      
       ElevatedButton(
         onPressed: resetGame,
         child: Text('Reset'),
