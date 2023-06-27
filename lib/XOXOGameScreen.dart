@@ -100,10 +100,7 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 68, 174, 255),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("XOXO Game"),
-      ),
+      
       body: Column(
         children: [
           Expanded(
