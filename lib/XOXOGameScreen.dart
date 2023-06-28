@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:xoxo/constants/colors.dart';
 
 class XOXOGameScreen extends StatefulWidget {
   const XOXOGameScreen({super.key});
@@ -99,63 +100,68 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 68, 174, 255),
+      backgroundColor: MainColors.priColor,
       
-      body: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                gameEnded
-                    ? 'Winner: $winner'
-                    : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
-                style: TextStyle(fontSize: 20,
-                fontWeight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  gameEnded
+                      ? 'Winner: $winner'
+                      : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
+                  style: TextStyle(fontSize: 20,
+                  fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+            Expanded(
+              flex: 3,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                itemCount: 9,
+                itemBuilder: (context, index) {
+                  final row = index ~/ 3;
+                  final col = index % 3;
+                  return GestureDetector(
+                    onTap: () {
+                      makeMove(row, col);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          width: 5,
+                          color: MainColors.priColor,
+                        ),
+                        color: MainColors.secColor
+                      ),
+                      child: Center(
+                        child: Text(
+                          board[row][col],
+                          style: TextStyle(fontSize: 40),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-              itemCount: 9,
-              itemBuilder: (context, index) {
-                final row = index ~/ 3;
-                final col = index % 3;
-                return GestureDetector(
-                  onTap: () {
-                    makeMove(row, col);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        board[row][col],
-                        style: TextStyle(fontSize: 40),
-                      ),
-                    ),
-                  ),
-                );
-              },
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: ElevatedButton(
-              onPressed: resetGame,
-              child: Text('Reset'),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: ElevatedButton(
+                onPressed: resetGame,
+                child: Text('Reset'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
