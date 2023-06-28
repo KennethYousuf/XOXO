@@ -16,6 +16,8 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
   late bool isPlayer1Turn;
   late String winner;
   late bool gameEnded;
+  int oScore = 0;
+  int xScore = 0;
   @override
   void initState() {
     super.initState();
@@ -102,24 +104,56 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.priColor,
-      
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  gameEnded
-                      ? 'Winner: $winner'
-                      : 'Next Turn: ${isPlayer1Turn ? "Player 1 (X)" : "Player 2 (O)"}',
-                  style: TextStyle(fontSize: 20,
-                  fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+                flex: 1,
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Player O',
+                            style: GoogleFonts.bebasNeue(
+                                color: MainColors.terColor,
+                                fontSize: 28),
+                          ),
+                          Text(
+                            oScore.toString(),
+                            style: GoogleFonts.bebasNeue(
+                                color: MainColors.terColor,
+                                 fontSize: 28),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Player x',
+                            style: GoogleFonts.bebasNeue(
+                                color: MainColors.terColor,
+                                fontSize: 28),
+                          ),
+                          Text(
+                            xScore.toString(),
+                            style: GoogleFonts.bebasNeue(
+                                color: MainColors.terColor,
+                                 fontSize: 28),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
             Expanded(
               flex: 3,
               child: GridView.builder(
@@ -136,22 +170,18 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          width: 5,
-                          color: MainColors.priColor,
-                        ),
-                        color: MainColors.secColor
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            width: 5,
+                            color: MainColors.priColor,
+                          ),
+                          color: MainColors.secColor),
                       child: Center(
                         child: Text(
                           board[row][col],
                           style: GoogleFonts.coiny(
-                            textStyle: TextStyle(
-                              fontSize: 64,
-                              color: MainColors.priColor
-                            )
-                          ),
+                              textStyle: TextStyle(
+                                  fontSize: 64, color: MainColors.priColor)),
                         ),
                       ),
                     ),
@@ -159,13 +189,28 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: ElevatedButton(
-                onPressed: resetGame,
-                child: Text('Reset'),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  gameEnded
+                      ? 'Winner: $winner'
+                      : 'Turn: ${isPlayer1Turn ? "Player X" : "Player O"}',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.all(18.0),
+            //   child: ElevatedButton(
+            //     onPressed: resetGame,
+            //     child: Text('Reset'),
+            //   ),
+            // ),
           ],
         ),
       ),
