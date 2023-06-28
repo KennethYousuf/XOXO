@@ -49,6 +49,11 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
           board[row][0] != '') {
         winner = board[row][0];
         gameEnded = true;
+           if (winner == 'O') {
+      oScore++; // Increment score for player O
+    } else {
+      xScore++; // Increment score for player X
+    }
         return;
       }
     }
@@ -59,6 +64,11 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
           board[0][col] != '') {
         winner = board[0][col];
         gameEnded = true;
+           if (winner == 'O') {
+      oScore++; // Increment score for player O
+    } else {
+      xScore++; // Increment score for player X
+    }
         return;
       }
     }
@@ -68,6 +78,11 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
         board[0][0] != '') {
       winner = board[0][0];
       gameEnded = true;
+         if (winner == 'O') {
+      oScore++; // Increment score for player O
+    } else {
+      xScore++; // Increment score for player X
+    }
       return;
     }
     if (board[0][2] == board[1][1] &&
@@ -75,6 +90,11 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
         board[0][2] != '') {
       winner = board[0][2];
       gameEnded = true;
+         if (winner == 'O') {
+      oScore++; // Increment score for player O
+    } else {
+      xScore++; // Increment score for player X
+    }
       return;
     }
 
@@ -98,6 +118,8 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
   void resetGame() {
     setState(() {
       initializeBoard();
+      oScore = 0; // Reset score for player O
+    xScore = 0; // Reset score for player X
     });
   }
 
@@ -204,13 +226,7 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(18.0),
-            //   child: ElevatedButton(
-            //     onPressed: resetGame,
-            //     child: Text('Reset'),
-            //   ),
-            // ),
+         
           ],
         ),
       ),
