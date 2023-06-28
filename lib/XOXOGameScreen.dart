@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:xoxo/constants/colors.dart';
 
 class XOXOGameScreen extends StatefulWidget {
@@ -145,7 +146,12 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                       child: Center(
                         child: Text(
                           board[row][col],
-                          style: TextStyle(fontSize: 40),
+                          style: GoogleFonts.coiny(
+                            textStyle: TextStyle(
+                              fontSize: 64,
+                              color: MainColors.priColor
+                            )
+                          ),
                         ),
                       ),
                     ),
