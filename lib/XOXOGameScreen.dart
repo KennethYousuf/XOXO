@@ -156,23 +156,44 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                 itemBuilder: (context, index) {
                   final row = index ~/ 3;
                   final col = index % 3;
-                   bool isWinnerCell = false;
+                  bool isWinnerCell = false;
 
-   if (winner != '') {
+                  if (winner != '') {
                     if (board[row][col] == winner) {
                       if (board[row][0] == board[row][1] &&
                           board[row][0] == board[row][2]) {
-                        isWinnerCell = true; // Current cell is part of the winning row
+                        isWinnerCell =
+                            true; // Current cell is part of the winning row
                       } else if (board[0][col] == board[1][col] &&
                           board[0][col] == board[2][col]) {
-                        isWinnerCell = true; // Current cell is part of the winning column
-                      } else if ((row == 0 && col == 0 && board[0][0] == board[1][1] && board[0][0] == board[2][2]) ||
-                          (row == 0 && col == 2 && board[0][2] == board[1][1] && board[0][2] == board[2][0]) ||
-                          (row == 1 && col == 1 && board[0][0] == board[1][1] && board[0][0] == board[2][2]) ||
-                          (row == 1 && col == 1 && board[0][2] == board[1][1] && board[0][2] == board[2][0]) ||
-                          (row == 2 && col == 2 && board[0][0] == board[1][1] && board[0][0] == board[2][2]) ||
-                          (row == 2 && col == 0 && board[0][2] == board[1][1] && board[0][2] == board[2][0])) {
-                        isWinnerCell = true; // Current cell is part of the winning diagonal
+                        isWinnerCell =
+                            true; // Current cell is part of the winning column
+                      } else if ((row == 0 &&
+                              col == 0 &&
+                              board[0][0] == board[1][1] &&
+                              board[0][0] == board[2][2]) ||
+                          (row == 0 &&
+                              col == 2 &&
+                              board[0][2] == board[1][1] &&
+                              board[0][2] == board[2][0]) ||
+                          (row == 1 &&
+                              col == 1 &&
+                              board[0][0] == board[1][1] &&
+                              board[0][0] == board[2][2]) ||
+                          (row == 1 &&
+                              col == 1 &&
+                              board[0][2] == board[1][1] &&
+                              board[0][2] == board[2][0]) ||
+                          (row == 2 &&
+                              col == 2 &&
+                              board[0][0] == board[1][1] &&
+                              board[0][0] == board[2][2]) ||
+                          (row == 2 &&
+                              col == 0 &&
+                              board[0][2] == board[1][1] &&
+                              board[0][2] == board[2][0])) {
+                        isWinnerCell =
+                            true; // Current cell is part of the winning diagonal
                       }
                     }
                   }
@@ -187,13 +208,18 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                             width: 5,
                             color: MainColors.priColor,
                           ),
-                          color: isWinnerCell ? MainColors.winColor: MainColors.secColor),
+                          color: isWinnerCell
+                              ? MainColors.winColor
+                              : MainColors.secColor),
                       child: Center(
                         child: Text(
                           board[row][col],
                           style: GoogleFonts.coiny(
                               textStyle: TextStyle(
-                                  fontSize: 64, color: isWinnerCell ? MainColors.terColor: MainColors.priColor)),
+                                  fontSize: 64,
+                                  color: isWinnerCell
+                                      ? MainColors.terColor
+                                      : MainColors.priColor)),
                         ),
                       ),
                     ),
@@ -201,22 +227,21 @@ class _XOXOGameScreenState extends State<XOXOGameScreen> {
                 },
               ),
             ),
-           
+            if(gameEnded)
             ElevatedButton.icon(
                 onPressed: () {
                   resetGame();
                 },
-                style: ElevatedButton.styleFrom(
-                  
-                  backgroundColor: Colors.white
-                ),
-                icon: Icon(Icons.play_circle,
-                color: MainColors.priColor,),
-                label: Text("Play Again!",
-                style: GoogleFonts.bebasNeue(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                icon: Icon(
+                  Icons.play_circle,
                   color: MainColors.priColor,
-                  fontSize: 18
-                ),))
+                ),
+                label: Text(
+                  "Play Again!",
+                  style: GoogleFonts.bebasNeue(
+                      color: MainColors.priColor, fontSize: 18),
+                ))
           ],
         ),
       ),
