@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xoxo/XOXOGameScreen.dart';
+import 'package:xoxo/splash.dart';
 
 void main() {
   runApp(XOXOGame());
@@ -13,7 +14,7 @@ class XOXOGame extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: XOXOGameScreen(),
+      home: MyHomePage(),
       debugShowCheckedModeBanner:false,
     );
   }
